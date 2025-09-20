@@ -18,14 +18,23 @@ std::vector<std::string> splitString(std::string input)
 
 std::string hash(std::string input)
 {
-    std::cout << hashLength;
     std::string hash;
     std::vector<std::string> stringParts = splitString(input);
     std::vector<std::vector<char>> charVector;
-    std::vector<int> asciiCodes;
+    std::vector<std::vector<int>> asciiCodes;
     for (int i = 0; i < hashLength; i++)
     {
         std::vector<char> c(stringParts[i].begin(), stringParts[i].end());
         charVector.push_back(c);
     }
+    for (int i = 0; i < hashLength; i++)
+    {
+        std::vector<int> segment;
+        for (auto &j : charVector[i])
+        {
+            segment.push_back((int)j);
+        }
+        asciiCodes.push_back(segment);
+    }
+    return " ";
 }
