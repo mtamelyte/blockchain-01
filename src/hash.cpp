@@ -1,13 +1,15 @@
 #include "../include/lib.h"
 
+int hashLength = 4;
+
 std::vector<std::string> splitString(std::string input)
 {
     int n = input.length();
     std::vector<std::string> splitString;
     int at, pre = 0;
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < hashLength; ++i)
     {
-        at = (n + n * i) / 4;
+        at = (n + n * i) / hashLength;
         splitString.push_back(input.substr(pre, at - pre));
         pre = at;
     }
@@ -16,11 +18,13 @@ std::vector<std::string> splitString(std::string input)
 
 std::string hash(std::string input)
 {
+    std::cout << hashLength;
     std::string hash;
     std::vector<std::string> stringParts = splitString(input);
-    std::vector<std::vector<char>> charVector; 
+    std::vector<std::vector<char>> charVector;
     std::vector<int> asciiCodes;
-    for(int i=0; i<4; i++){
+    for (int i = 0; i < hashLength; i++)
+    {
         std::vector<char> c(stringParts[i].begin(), stringParts[i].end());
         charVector.push_back(c);
     }
