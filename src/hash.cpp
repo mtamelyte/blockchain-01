@@ -18,9 +18,10 @@ std::string hash(std::string input)
 {
     std::string hash;
     std::vector<std::string> stringParts = splitString(input);
-    for(int i=0; i<4; i++)
-    {
-        std::cout << stringParts[i] << std::endl;
+    std::vector<std::vector<char>> charVector; 
+    std::vector<int> asciiCodes;
+    for(int i=0; i<4; i++){
+        std::vector<char> c(stringParts[i].begin(), stringParts[i].end());
+        charVector.push_back(c);
     }
-
 }
