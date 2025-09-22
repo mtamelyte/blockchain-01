@@ -11,7 +11,8 @@ int main(){
     std::cout << pakeistaRaide;*/
     
     std::string input;
-    std::cout << "Kokį tekstą norite hashuoti?" << std::endl;
+    std::cout << "Kokį tekstą norite hashinti?" << std::endl;
     std::getline(std::cin, input);
     std::string output = hash(input);
+    std::cout << output << std::endl;
 }

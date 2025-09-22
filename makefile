@@ -3,5 +3,8 @@ main:
 	g++ -o main main.o hash.o
 	./main.exe
 
+run: 
+	./main.exe
+
 clean:
 	del *.o *.exe
