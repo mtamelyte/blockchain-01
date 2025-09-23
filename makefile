@@ -1,12 +1,7 @@
 main:
-	g++ -c main.cpp src/bitwiseHash.cpp
-	g++ -o main main.o bitwiseHash.o
+	g++ -c main.cpp src/hash.cpp
+	g++ -o main main.o hash.o
 	./main.exe
-
-bitwise:
-	g++ -c src/bitwiseHash.cpp
-	g++ -o bitwiseHash.o
-	./bitwiseHash.exe
 
 run: 
 	./main.exe
