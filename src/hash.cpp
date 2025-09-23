@@ -2,31 +2,25 @@
 
 std::string hash(std::string input)
 {
+    //initializing the hash
     int hash[64]{0};
     std::stringstream finalHash;
     for (int i=0; i<input.length(); i++)
     {
-        int utfVal = (int)inputChar;
+        int utfVal = (int)input[i];
         
-        //trys setai verciu keitimo su skirtingais seedais
+        //randomly adjusting the values in the hex using seeds derived from the UTF value that go through several rounds of randomization
         std::mt19937 change1(utfVal);
-        std::mt19937 change2(utfVal*i);
-        std::mt19937 change3(input.length());
+        std::uniform_int_distribution<int> seed(1, 500);
+        std::mt19937 change2(seed(change1));
+        std::mt19937 change3(seed(change1)*seed(change2));
         std::uniform_int_distribution<int> number(0, 15);
-        for (int i = 0; i < 64; i++)
+        for (int j = 0; j < 64; j++)
         {
-            hash[i] = abs(hash[i] - number(change1));
-        }
-        for (int i = 0; i < 64; i++)
-        {
-            hash[i] = abs(hash[i] - number(change2));
-        }
-        for (int i = 0; i < 64; i++)
-        {
-            hash[i] = abs(hash[i] - number(change3));
+            hash[j] = abs(hash[j] - number(change3));
         }
 
-        //verciu rotacija, kad simbolio pozicija inpute turetu reiksmes outpute
+        //rotating the characters in the hash before inputing a new one to ensure avalanche
         int temp = hash[0];
         for (int i = 0; i < 64; i++)
         {
@@ -34,7 +28,7 @@ std::string hash(std::string input)
         }
         hash[63] = temp;
     }
-    
+    //casting everything to hex
     for (int i = 0; i < 64; i++)
     {
         finalHash << std::hex << hash[i];

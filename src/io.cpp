@@ -1,10 +1,19 @@
 #include "../include/lib.h"
 
+bool isEmpty(std::ifstream& file)
+{
+    return file.tellg() == 0 && file.peek() == std::ifstream::traits_type::eof();
+}
+
 bool exists(std::string fileName)
 {
     std::ifstream fin;
     fin.open(fileName);
     if(fin.fail()) return 0;
+    else if(isEmpty(fin)) 
+    {
+        return 0;
+    }
     else{
         fin.close();
         return 1;
