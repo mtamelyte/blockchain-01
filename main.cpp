@@ -15,9 +15,17 @@ int main(int argc, char *argv[])
     {
         for (int i = 1; i < argc; i++)
         {
-            std::string fileName = argv[i];
-            std::string output = hash(readFromFile(fileName));
-            std::cout << output << std::endl;
+            if (exists(argv[i]))
+            {
+                std::string fileName = argv[i];
+                std::string output = hash(readFromFile(fileName));
+                std::cout << output << std::endl;
+            }
+            else
+            {
+                std::string output = hash(argv[i]);
+                std::cout << output << std::endl;
+            }
         }
     }
 }

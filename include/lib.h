@@ -2,3 +2,4 @@
 
 std::string hash(std::string input);
 std::string readFromFile(std::string fileName);
+bool exists(std::string fileName);

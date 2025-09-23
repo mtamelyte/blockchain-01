@@ -4,7 +4,7 @@ main:
 	./hashFunkcija.exe
 
 run: 
-	./main.exe
+	./hashFunkcija.exe
 
 clean:
 	del *.o *.exe

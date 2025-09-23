@@ -1,5 +1,16 @@
 #include "../include/lib.h"
 
+bool exists(std::string fileName)
+{
+    std::ifstream fin;
+    fin.open(fileName);
+    if(fin.fail()) return 0;
+    else{
+        fin.close();
+        return 1;
+    }
+}
+
 std::string readFromFile(std::string fileName){
     std::stringstream buffer; 
     std::ifstream fin;
