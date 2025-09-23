@@ -1,6 +1,6 @@
 #include "../include/lib.h"
 
-int hashLength = 64;
+int hashLength = 4;
 int UTFCap = 126; 
 
 std::vector<std::string> splitString(std::string input)
@@ -42,7 +42,7 @@ std::string hash(std::string input)
         {
             std::cout << j << " " << (int)j << std::endl;
             segmentSum *= j;
-            segmentHandling(segmentSum);
+         //   segmentHandling(segmentSum);
         }
         UTFCodes.push_back(segmentSum);
         std::cout << segmentSum << std::endl;
