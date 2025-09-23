@@ -1,1 +1,1 @@
-# blockchain-01
+# Hash funkcija
