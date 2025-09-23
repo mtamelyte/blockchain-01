@@ -5,3 +5,5 @@
 <h2>Tests</h2>
 <h3>Test files</h3>
 <p>The repository contains several files, which were used to run tests during the coding of this hash. They are contained in the "files" subdirectory</p>
+<h3>Output size</h3>
+<p>The hash function always outputs a 64-symbol hash of hexadecimal numbers, regardless of input size </p>
