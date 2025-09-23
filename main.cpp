@@ -3,12 +3,13 @@
 int main(int argc, char *argv[])
 {
     std::string input;
+    std::string output;
 
     if (argc == 1)
     {
         std::cout << "Kokį tekstą norite hashinti?" << std::endl;
         std::getline(std::cin, input);
-        std::string output = hash(input);
+        output = hash(input);
         std::cout << output << std::endl;
     }
     else
@@ -17,13 +18,12 @@ int main(int argc, char *argv[])
         {
             if (exists(argv[i]))
             {
-                std::string fileName = argv[i];
-                std::string output = hash(readFromFile(fileName));
+                output = hash(readFromFile(argv[i]));
                 std::cout << output << std::endl;
             }
             else
             {
-                std::string output = hash(argv[i]);
+                output = hash(argv[i]);
                 std::cout << output << std::endl;
             }
         }
