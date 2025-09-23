@@ -5,34 +5,55 @@ int hashLength = 64;
 std::string hash(std::string input)
 {
     int hash[64]{15};
-    int totalValue=0;
     std::stringstream finalHash;
     for (char inputChar : input)
     {
-        int utfVal = (int) inputChar;
-        int utfValMod = utfVal%16;
-        std::bitset<8> binVal(inputChar);
+        int utfVal = (int)inputChar;
+        std::mt19937 change(utfVal);
+        std::uniform_int_distribution<int> number(0, 15);
+        for (int i = 0; i < 64; i++)
+        {
+            
+        }
+    }
+
+    finalHash << std::hex << value;
+    return finalHash.str();
+}
+
+/*
+{
+    int hash[64]{0};
+    long long totalValue = 0;
+    std::stringstream finalHash;
+    for (int a = 0; a < input.length(); a++)
+    {
+        int utfVal = (int)input[a];
         totalValue += utfVal;
-        for(int i=0; i<8; i++){
-            if(binVal[i]){
-                hash[i] = abs(hash[i]-utfValMod);
-                hash[i+8] = hash[i];
-                hash[i+16] = hash[i];
-                hash[i+24] = hash[i];
-                hash[i+32] = hash[i];
-                hash[i+40] = hash[i];
-                hash[i+48] = hash[i];
-                hash[i+56] = hash[i];
+
+        std::bitset<8> binVal(input[a]);
+        for (int i = 0; i < 8; i++)
+        {
+            if (binVal[i])
+            {
+                for (int j = i; j < 64; j += 8)
+                {
+                    hash[j]++;
+                }
             }
         }
     }
 
-    std::mt19937 mt(totalValue);
-    std::uniform_int_distribution<int> numeris(0, 15);
-    for (int i = 0; i < 64; i++) 
+    std::mt19937 change(totalValue);
+    std::uniform_int_distribution<int> number(0, 15);
+    for (int i = 0; i < 64; i++)
     {
-        hash[i]=abs(hash[i]-numeris(mt));
-        finalHash << std::hex << hash[i];
+        int value = number(change);
+        for (int j = 0; j < hash[i]; j++)
+        {
+            value = number(change);
+        }
+        finalHash << std::hex << value;
     }
     return finalHash.str();
-}
+}*/
