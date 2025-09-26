@@ -12,4 +12,4 @@
         <li>The use of a mt19937 seed generator means the hash isn't particularly secure</li>
     </ul>
 <h3>Tests</h3>
-<img width="936" height="839" alt="Screenshot 2025-09-26 125925" src="https://github.com/user-attachments/assets/05f68cea-a145-4adb-92c0-f527ab4d8e9d" />
+<img width="936" height="839" alt="Screenshot of algorithm test results" src="https://github.com/user-attachments/assets/05f68cea-a145-4adb-92c0-f527ab4d8e9d" />
