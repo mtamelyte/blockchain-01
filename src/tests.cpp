@@ -112,6 +112,18 @@ void speedTest()
     std::cout << "Full file: " << result << "s" << std::endl;
 }
 
+std::string generateRandomString(int length)
+{
+    std::string randomString = "";
+    std::mt19937 seed(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
+    std::uniform_int_distribution<int> symbols(33, 126);
+    for (int j = 0; j < length; j++)
+    {
+        randomString += (char)symbols(seed);
+    }
+    return randomString;
+}
+
 void collisionTest(int length)
 {
     std::mt19937 seed(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
@@ -119,16 +131,9 @@ void collisionTest(int length)
     int collisionCount = 0;
     for (int i = 0; i < 100000; i++)
     {
-        std::string firstString;
-        std::string secondString;
-        for (int j = 0; j < length; j++)
-        {
-            firstString += (char)symbols(seed);
-        }
-        for (int j = 0; j < length; j++)
-        {
-            secondString += (char)symbols(seed);
-        }
+        std::string firstString = generateRandomString(length);
+        std::string secondString = generateRandomString(length);
+        ;
         if (hash(firstString) == hash(secondString))
             collisionCount++;
     }
@@ -182,12 +187,8 @@ void avalancheTest()
     int collisionCount = 0;
     for (int i = 0; i < 100000; i++)
     {
-        std::string firstString;
+        std::string firstString = generateRandomString(10);
         std::string secondString;
-        for (int j = 0; j < 10; j++)
-        {
-            firstString += (char)symbols(seed);
-        }
         secondString = firstString;
         int pos = position(seed);
         int symbolToChange = symbols(seed);
@@ -198,10 +199,14 @@ void avalancheTest()
         std::string hash2 = hash(secondString);
         double hexSim = hexSimilarity(hash1, hash2);
         double bitSim = bitSimilarity(hash1, hash2);
-        if(hexSim>maxHexSimilarity) maxHexSimilarity = hexSim;
-        if(hexSim<minHexSimilarity) minHexSimilarity = hexSim;
-        if(bitSim>maxBitSimilarity) maxBitSimilarity = bitSim;
-        if(bitSim<minBitSimilarity) minBitSimilarity = bitSim;
+        if (hexSim > maxHexSimilarity)
+            maxHexSimilarity = hexSim;
+        if (hexSim < minHexSimilarity)
+            minHexSimilarity = hexSim;
+        if (bitSim > maxBitSimilarity)
+            maxBitSimilarity = bitSim;
+        if (bitSim < minBitSimilarity)
+            minBitSimilarity = bitSim;
         averageHexSimilarity += hexSim;
         averageBitSimilarity += bitSim;
     }
@@ -213,14 +218,31 @@ void avalancheTest()
     std::cout << "Average bit similarity: " << averageBitSimilarity / 100000 << "% " << std::endl;
 }
 
+void saltTest()
+{
+    std::string input = "I love blockchains!";
+    std::string salt = generateRandomString(10);
+    std::string stringToHash = input + salt;
+    std::cout << "Initial string: " << input << std::endl;
+    std::cout << "Salt: " << salt << std::endl;
+    std::cout << "String with salt: " << stringToHash << std::endl;
+    std::cout << "Hash without salt:" << hash(input) << std::endl;
+    std::cout << "Hash with salt: " << hash(stringToHash) << std::endl;
+}
+
 int main()
 {
     outputSizeTest();
     determinismTest();
- //   speedTest(); 
-    /*    collisionTest(10);
+    std::cout << "Speed test: " << std::endl;
+    speedTest();
+    std::cout << "Collision test: " << std::endl;
+    collisionTest(10);
     collisionTest(100);
-   collisionTest(500);
-     collisionTest(1000);*/
+    collisionTest(500);
+    collisionTest(1000);
+    std::cout << "Avalanche test: " << std::endl;
     avalancheTest();
+    std::cout << "Salt test: " << std::endl;
+    saltTest();
 }
