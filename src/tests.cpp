@@ -226,7 +226,7 @@ void saltTest()
     std::cout << "Initial string: " << input << std::endl;
     std::cout << "Salt: " << salt << std::endl;
     std::cout << "String with salt: " << stringToHash << std::endl;
-    std::cout << "Hash without salt:" << hash(input) << std::endl;
+    std::cout << "Hash without salt: " << hash(input) << std::endl;
     std::cout << "Hash with salt: " << hash(stringToHash) << std::endl;
 }
 

@@ -61,9 +61,19 @@ std::string hash(std::string input)
     }
 
     // casting everything to hex
+    // Claude changed conversion to hex to manual because its approach was sometimes outputting spaces
     for (int i = 0; i < 16; i++)
     {
-        finalHash << std::hex << std::setw(4) << (hash[i] & 0xFFFF);
+        unsigned int val = hash[i] & 0xFFFF;
+        char hexChars[] = "0123456789abcdef";
+        char hexStr[5];
+        hexStr[4] = '\0';
+        hexStr[3] = hexChars[val & 0xF];
+        hexStr[2] = hexChars[(val >> 4) & 0xF];
+        hexStr[1] = hexChars[(val >> 8) & 0xF];
+        hexStr[0] = hexChars[(val >> 12) & 0xF];
+
+        finalHash << hexStr;
     }
     return finalHash.str();
 }
