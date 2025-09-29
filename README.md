@@ -4,12 +4,11 @@
     <ul>
         <li>The algorithm is not collision-prone</li>
         <li>Avalanche effect is ensured - each character significantly impacts the final hash</li>
+        <li>Significantly faster than my original hash (see v0.1)</li>
     </ul>
 <h3>Weaknesses</h3>
     <ul>
-        <li>The algorithm is very slow - hashing 100 000 strings that were 1000 symbols long took about 15 minutes</li>
-        <li>The distribution is not great - numbers at the ends of the spectrum (such as 1 and 2 or E and F) appear less frequently than numbers like 8</li>
-        <li>The use of a mt19937 seed generator means the hash isn't particularly secure</li>
+        <li>The mixing approach Claude implemented uses several mathematical and bit operations I wouldn't be able to recreate myself </li>
     </ul>
 <h3>Tests</h3>
 <img width="936" height="839" alt="Screenshot of algorithm test results" src="https://github.com/user-attachments/assets/05f68cea-a145-4adb-92c0-f527ab4d8e9d" />
