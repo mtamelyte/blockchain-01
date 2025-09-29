@@ -2,32 +2,68 @@
 
 std::string hash(std::string input)
 {
-    // initializing the hash
-    int hash[64]{0};
+    // initializing the hash - Claude AI changed it to an std::array
+    std::array<unsigned int, 16> hash{0};
     std::stringstream finalHash;
+
+    if (input.empty()) // Claude AI added checking for empty input
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            finalHash << std::hex << std::setfill('0') << std::setw(4) << (hash[i] & 0xFFFF);
+        }
+        return finalHash.str();
+    }
+
     for (int i = 0; i < input.length(); i++)
     {
-        int utfVal = (int)input[i];
+        unsigned int utfVal = static_cast<unsigned char>(input[i]);
 
         // randomly adjusting the values in the hex using seeds derived from the UTF value that go through several rounds of randomization while accounting for position in hash and overall input
-        std::mt19937 change1(utfVal);
-        std::uniform_int_distribution<int> seed(1, 500);
-        std::mt19937 change2(seed(change1));
-        std::mt19937 change3(seed(change1) * seed(change2));
-        std::uniform_int_distribution<int> randomNumber(0, 250);
-        for (int j = 0; j < 64; j++)
+        // rather than using a mt generator, Claude uses bit operations and large primes to create seeds
+        unsigned int seed1 = utfVal * 2654435761u + static_cast<unsigned int>(i);
+        unsigned int seed2 = (seed1 ^ (seed1 >> 16)) * 2246822507u;
+        unsigned int seed3 = (seed2 ^ (seed2 >> 13)) * 3266489917u;
+
+        // Claude implements a linear congruential generator for random number generation, which is faster
+        auto lcg = [](unsigned int &state) -> unsigned int
         {
-            int change = (randomNumber(change3) + j * randomNumber(change2) + i * randomNumber(change1)) % 16;
-            hash[j] = abs(hash[j] - change);
+            state = state * 1664525u + 1013904223u;
+            return state;
+        };
+
+        // Claude uses the lcg and adds bit operations to the distribution to ensure better avalanche effect
+        for (int j = 0; j < 16; j++)
+        {
+            unsigned int change = (lcg(seed3) + j * lcg(seed2) + i * lcg(seed1)) & 0xFFFF;
+            hash[j] ^= change;
+            hash[j] = ((hash[j] << 7) | (hash[j] >> 9)) & 0xFFFF;
+            hash[j] ^= (hash[j] >> 4) & 0xFFFF;
         }
 
         // rotating the characters in the hash before inputing a new one to ensure avalanche
-        std::rotate(hash, hash + 1, hash + 64);
+        std::rotate(hash.begin(), hash.begin() + ((i % 5) + 1), hash.end());
+
+        // Claude adds additional random rotation to be less predictable
+        if (i % 4 == 3)
+        {
+            for (int k = 0; k < 16; k++)
+            {
+                hash[k] ^= hash[(k + 8) % 16];
+            }
+        }
     }
-    // casting everything to hex
-    for (int i = 0; i < 64; i++)
+    // Claude adds an additional round of changes
+    for (int i = 0; i < 16; i++)
     {
-        finalHash << std::hex << hash[i];
+        hash[i] ^= hash[(i + 8) % 16];
+        hash[i] = ((hash[i] << 5) | (hash[i] >> 11)) & 0xFFFF;
+    }
+
+    // casting everything to hex
+    for (int i = 0; i < 16; i++)
+    {
+        finalHash << std::hex << std::setw(4) << (hash[i] & 0xFFFF);
     }
     return finalHash.str();
 }

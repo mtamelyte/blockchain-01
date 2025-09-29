@@ -134,7 +134,7 @@ void collisionTest(int length)
         std::string firstString = generateRandomString(length);
         std::string secondString = generateRandomString(length);
         ;
-        if (hash(firstString) == hash(secondString))
+        if (hash(firstString) == hash(secondString) && firstString!= secondString)
             collisionCount++;
     }
     std::cout << length << " symbol strings: " << collisionCount << " collisions" << std::endl;
