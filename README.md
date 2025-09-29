@@ -11,4 +11,4 @@
         <li>The mixing approach Claude implemented uses several mathematical and bit operations I wouldn't be able to recreate myself </li>
     </ul>
 <h3>Tests</h3>
-<img width="936" height="839" alt="Screenshot of algorithm test results" src="https://github.com/user-attachments/assets/05f68cea-a145-4adb-92c0-f527ab4d8e9d" />
+<img width="936" height="838" alt="Screenshot of AI improved code tests" src="https://github.com/user-attachments/assets/ac002aa3-47d8-471a-a2b7-56dd5c0cd8b1" />
