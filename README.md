@@ -3,7 +3,7 @@
 <h3>Strengths</h3>
     <ul>
         <li>The algorithm is not collision-prone</li>
-        <li>Avalanche effect is ensured - each character significantly impacts the final hash</li>
+        <li>Avalanche effect is ensured - each character significantly impacts the final hash, even more than my original hash (see v0.1)</li>
         <li>Significantly faster than my original hash (see v0.1)</li>
     </ul>
 <h3>Weaknesses</h3>
