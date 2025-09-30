@@ -12,4 +12,5 @@
         <li>The use of a mt19937 seed generator means the hash isn't particularly secure</li>
     </ul>
 <h3>Tests</h3>
+<p> As seen in the speed tests, doubling the size of the input roughly doubles the duration of hashing, proving that the algorithm's time complexity is linear - O(n), even if it isn't particularly efficient.
 <img width="936" height="839" alt="Screenshot of algorithm test results" src="https://github.com/user-attachments/assets/05f68cea-a145-4adb-92c0-f527ab4d8e9d" />
