@@ -47,11 +47,16 @@
 <p>The tests use testing files which come with the code - they are located in the 'files' folder. You can change the content of these files if you'd like, but do not change the names or delete files - they are hardcoded into the tests :)</p>
 
 <h2>Testing</h2>
+<img width="926" height="197" alt="Screenshot 2025-10-01 201044" src="https://github.com/user-attachments/assets/f14eddce-8c91-4567-a95e-0e3558d09440" />
+<img width="1027" height="981" alt="Screenshot 2025-10-01 201053" src="https://github.com/user-attachments/assets/4732a0c1-a0a3-40eb-a781-6bd855e9cfdb" />
+<img width="1217" height="1081" alt="Screenshot 2025-10-01 201104" src="https://github.com/user-attachments/assets/422ccb8f-635d-41d1-ab92-8d89abe943f0" />
+<img width="927" height="530" alt="Screenshot 2025-10-01 201114" src="https://github.com/user-attachments/assets/5560122c-1cd6-437e-b6b0-c5d343a8cf5f" />
 
 
 <p></p>
 <p> As seen in the speed tests, doubling the size of the input roughly doubles the duration of hashing, proving that the algorithm's time complexity is linear - O(n), even if it isn't particularly efficient. However, as seen in the graph, the AI improved version was significantly faster in comparison, not being that much slower than SHA256</p>
 
+<img width="1693" height="976" alt="Screenshot 2025-10-01 232947" src="https://github.com/user-attachments/assets/027c50c8-02eb-4f48-9d23-e60f201b6de1" />
 
 
 <h2>Conclusions</h2>
