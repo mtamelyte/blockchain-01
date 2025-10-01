@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     {
         std::cout << "Kokį tekstą norite hashinti?" << std::endl;
         std::getline(std::cin, input);
-        output = hash(input);
+        output = claudeHash(input);
         std::cout << output << std::endl;
     }
     else
@@ -18,12 +18,12 @@ int main(int argc, char *argv[])
         {
             if (exists(argv[i]))
             {
-                output = hash(readFromFile(argv[i]));
+                output = claudeHash(readFromFile(argv[i]));
                 std::cout << output << std::endl;
             }
             else
             {
-                output = hash(argv[i]);
+                output = claudeHash(argv[i]);
                 std::cout << output << std::endl;
             }
         }
