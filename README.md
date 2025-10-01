@@ -38,6 +38,8 @@
 <p></p>
 <p> As seen in the speed tests, doubling the size of the input roughly doubles the duration of hashing, proving that the algorithm's time complexity is linear - O(n), even if it isn't particularly efficient.</p>
 
+<img width="900" alt="Graph, comparing the speeds of my hash and SHA256" src="https://github.com/user-attachments/assets/8e636635-933d-4fcc-8d13-6bc3cbcbb753" />
+
 <h2>Conclusions</h2>
 <ul>
     <li>Using a mt19937 generator for seeded randomizing is not a very good way to create a hash algorithm, as it is quite slow and pretty predictable.</li>
