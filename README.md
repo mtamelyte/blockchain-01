@@ -1,4 +1,4 @@
-<h1>Hash function - Blockchain Technologies Course</h1>
+<img width="924" height="1079" alt="image" src="https://github.com/user-attachments/assets/0e4474f3-78da-44e1-9b34-8dabd682aeff" /><h1>Hash function - Blockchain Technologies Course</h1>
 <h2>About the algorithm</h2>
 <p>This is a repository, created for my Blockchain Technologies course in university, which contains a custom hash function, written by me with no resources on how to implement one (v0.1) and improved using Claude AI (v0.2), while maintaining the original idea of the hash - using a seed derived from the UTF-8 value of the input characters to semi-randomly adjust each of the characters of a 64-character hexadecimal hash while rotating the hash between changes to ensure avalanche effect.</p>
 <h3>Strengths</h3>
@@ -32,7 +32,9 @@
 <p>The tests use testing files which come with the code - they are located in the 'files' folder. You can change the content of these files if you'd like, but do not change the names or delete files - they are hardcoded into the tests :)</p>
 
 <h2>Testing</h2>
-<img width="936" height="839" alt="Screenshot of algorithm test results" src="https://github.com/user-attachments/assets/05f68cea-a145-4adb-92c0-f527ab4d8e9d" />
+<img width="900" alt="My hash and SHA256 comparison tests" src="https://github.com/user-attachments/assets/c3e1fc46-b0d3-4d86-92f3-b90688c06bf1" />
+<img width="900" alt="My hash and SHA256 comparison tests" src="https://github.com/user-attachments/assets/7104f802-8382-4f30-94f2-8a52bd8ae0de" />
+
 <p></p>
 <p> As seen in the speed tests, doubling the size of the input roughly doubles the duration of hashing, proving that the algorithm's time complexity is linear - O(n), even if it isn't particularly efficient.</p>
 
