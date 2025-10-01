@@ -11,5 +11,5 @@ clean:
 
 tests:
 	g++ -O3 -c src/tests.cpp src/hash.cpp src/io.cpp
-	g++ -O3 -o tests tests.o hash.o io.o
+	g++ -O3 -o tests tests.o hash.o io.o -lssl -lcrypto
 	./tests.exe

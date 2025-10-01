@@ -1,6 +1,6 @@
 #include "../include/lib.h"
 
-std::string hash(std::string input)
+std::string hash(const std::string &input)
 {
     // initializing the hash - Claude AI changed it to an std::array
     std::array<unsigned int, 16> hash{0};
