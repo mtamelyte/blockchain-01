@@ -4,13 +4,13 @@
 <h3>Strengths</h3>
     <ul>
         <li>The algorithm is not collision-prone</li>
-        <li>Avalanche effect is ensured - each character significantly impacts the final hash</li>
+        <li>Avalanche effect is ensured - each character significantly impacts the final hash (although SHA256 is still better in this regard)</li>
     </ul>
 <h3>Weaknesses</h3>
     <ul>
         <li>The algorithm is very slow - hashing 100 000 strings that were 1000 symbols long took about 15 minutes</li>
         <li>The distribution is not great - numbers at the ends of the spectrum (such as 1 and 2 or E and F) appear less frequently than numbers like 8</li>
-        <li>The use of a mt19937 seed generator means the hash isn't particularly secure</li>
+        <li>The use of a mt19937 seed generator means the hash isn't very secure</li>
     </ul>
 <h2>Setup</h2>
 <h3>Setup guide using make</h3>

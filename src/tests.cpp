@@ -8,14 +8,14 @@ std::string sha256(const std::string &str)
     SHA256_Update(&sha256, str.c_str(), str.size());
     SHA256_Final(hash, &sha256);
     std::stringstream ss;
-    for(int i = 0; i < SHA256_DIGEST_LENGTH; i++)
+    for (int i = 0; i < SHA256_DIGEST_LENGTH; i++)
     {
         ss << std::hex << std::setw(2) << std::setfill('0') << (int)hash[i];
     }
     return ss.str();
 }
 
-void outputSizeTest(std::string(*hash)(const std::string &input))
+void outputSizeTest(std::string (*hash)(const std::string &input))
 {
     std::vector<std::string> output;
     output.push_back(hash(readFromFile("C:/Users/tamel/Documents/uni/blockchain/blockchain-01/files/empty.txt")));
@@ -40,7 +40,7 @@ void outputSizeTest(std::string(*hash)(const std::string &input))
         std::cout << "Output test failed with " << errorCounter << " error(s)." << std::endl;
 }
 
-void determinismTest(std::string(*hash)(const std::string &input))
+void determinismTest(std::string (*hash)(const std::string &input))
 {
     std::string output1 = (hash(readFromFile("C:/Users/tamel/Documents/uni/blockchain/blockchain-01/files/testing.txt")));
     std::string output2 = (hash("I love blockchains yay!"));
@@ -56,75 +56,32 @@ void determinismTest(std::string(*hash)(const std::string &input))
     }
 }
 
-void speedTest(std::string(*hash)(const std::string &input))
+void speedTest(std::string (*hash)(const std::string &input))
 {
     std::string inputFile = "C:/Users/tamel/Documents/uni/blockchain/blockchain-01/files/konstitucija.txt";
-    std::string input = readToCertainLine(inputFile, 1);
-    auto t1 = std::chrono::high_resolution_clock::now();
-    std::string output = hash(input);
-    auto t2 = std::chrono::high_resolution_clock::now();
-    double result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "1 line: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 2);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "2 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 4);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "4 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 8);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "8 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 16);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "16 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 32);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "32 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 64);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "64 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 128);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "128 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 256);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "256 lines: " << result << "s" << std::endl;
-    input = readToCertainLine(inputFile, 512);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "512 lines: " << result << "s" << std::endl;
-    input = readFromFile(inputFile);
-    t1 = std::chrono::high_resolution_clock::now();
-    output = hash(input);
-    t2 = std::chrono::high_resolution_clock::now();
-    result = std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
-    std::cout << "Full file: " << result << "s" << std::endl;
+    for (int i = 1; i < 789; i *= 2)
+    {
+        double result = 0;
+        for (int j = 0; j < 3; j++)
+        {
+            std::string input = readToCertainLine(inputFile, i);
+            auto t1 = std::chrono::high_resolution_clock::now();
+            std::string output = hash(input);
+            auto t2 = std::chrono::high_resolution_clock::now();
+            result += std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
+        }
+        std::cout << i << " line(s): " << result / 3 << "s" << std::endl;
+    }
+    double result = 0;
+    for (int j = 0; j < 3; j++)
+    {
+        std::string input = readFromFile(inputFile);
+        auto t1 = std::chrono::high_resolution_clock::now();
+        std::string output = hash(input);
+        auto t2 = std::chrono::high_resolution_clock::now();
+        result += std::chrono::duration_cast<std::chrono::nanoseconds>(t2 - t1).count() / 1000000000.0;
+    }
+    std::cout << "Full file: " << result/3 << "s" << std::endl;
 }
 
 std::string generateRandomString(int length)
@@ -139,7 +96,7 @@ std::string generateRandomString(int length)
     return randomString;
 }
 
-void collisionTest(int length, std::string(*hash)(const std::string &input))
+void collisionTest(int length, std::string (*hash)(const std::string &input))
 {
     std::mt19937 seed(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<int> symbols(33, 126);
@@ -188,7 +145,7 @@ double bitSimilarity(std::string hash1, std::string hash2)
     return static_cast<double>(identicalBits) / length * 100;
 }
 
-void avalancheTest(std::string(*hash)(const std::string &input))
+void avalancheTest(std::string (*hash)(const std::string &input))
 {
     std::mt19937 seed(static_cast<long unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
     std::uniform_int_distribution<int> symbols(33, 126);
@@ -233,7 +190,7 @@ void avalancheTest(std::string(*hash)(const std::string &input))
     std::cout << "Average bit similarity: " << averageBitSimilarity / 100000 << "% " << std::endl;
 }
 
-void saltTest(std::string(*hash)(const std::string &input))
+void saltTest(std::string (*hash)(const std::string &input))
 {
     std::string input = "I love blockchains!";
     std::string salt = generateRandomString(10);
